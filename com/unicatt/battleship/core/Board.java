@@ -2,8 +2,9 @@ package com.unicatt.battleship.core;
 
 import com.unicatt.battleship.beans.BoardCell;
 import com.unicatt.battleship.beans.Coordinates;
+import com.unicatt.battleship.beans.Ship;
+import com.unicatt.battleship.beans.ShipComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

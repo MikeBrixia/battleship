@@ -4,8 +4,8 @@ import com.unicatt.battleship.beans.BoardCell;
 import com.unicatt.battleship.beans.Coordinates;
 import com.unicatt.battleship.core.Board;
 import com.unicatt.battleship.core.GameSession;
-import com.unicatt.battleship.core.Ship;
-import com.unicatt.battleship.core.ShipComponent;
+import com.unicatt.battleship.beans.Ship;
+import com.unicatt.battleship.beans.ShipComponent;
 import java.util.Scanner;
 
 public class Main

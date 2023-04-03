@@ -1,7 +1,5 @@
 package com.unicatt.battleship.beans;
 
-import com.unicatt.battleship.core.ShipComponent;
-
 public class BoardCell
 {
     // The X,Y coordinates of the cell on the board.
