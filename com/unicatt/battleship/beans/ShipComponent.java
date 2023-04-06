@@ -1,7 +1,4 @@
-package com.unicatt.battleship.core;
-import com.unicatt.battleship.beans.BoardCell;
-import com.unicatt.battleship.beans.Coordinates;
-import com.unicatt.battleship.beans.IDamageable;
+package com.unicatt.battleship.beans;
 
 public class ShipComponent
 {

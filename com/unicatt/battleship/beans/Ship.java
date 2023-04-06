@@ -1,6 +1,5 @@
-package com.unicatt.battleship.core;
+package com.unicatt.battleship.beans;
 
-import com.unicatt.battleship.beans.IDamageable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

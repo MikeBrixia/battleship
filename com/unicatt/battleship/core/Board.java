@@ -2,8 +2,10 @@ package com.unicatt.battleship.core;
 
 import com.unicatt.battleship.beans.BoardCell;
 import com.unicatt.battleship.beans.Coordinates;
+import com.unicatt.battleship.beans.Ship;
+import com.unicatt.battleship.beans.ShipComponent;
 
-import java.util.ArrayList;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -28,14 +30,6 @@ public class Board
         this.boardCells = new BoardCell[columns][rows];
 
         buildBoard();
-    }
-
-    /**
-     * Draw the board in the terminal.
-     */
-    public void drawBoard()
-    {
-        //...
     }
 
     /**
