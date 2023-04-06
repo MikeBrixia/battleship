@@ -23,7 +23,7 @@ public class BattleshipGrid extends Canvas
     public void paint(Graphics g)
     {
         super.paint(g);
-        
+
         for(int x = 0; x < board.getColumns(); x++)
         {
             for(int y = 0; y < board.getRows(); y++)

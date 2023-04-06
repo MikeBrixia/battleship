@@ -111,7 +111,6 @@ public class CommonUtils {
      */
     public static void centerWindowOnScreen(Component window, Component parent) {
         // Gets the size of the screen
-//		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
         // Determines the new location of the window
         int w = window.getSize().width; System.out.println(w);
