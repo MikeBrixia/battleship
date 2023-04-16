@@ -37,24 +37,30 @@ public class BoardCell
         // Is it the first time this cell get hit?
         if(hidden)
         {
-            // if was first it, then apply damage to the ship component
-            // and mark it as "hit".
-            shipComponent.setHit(true);
-
             // Show the cell on to the player
             hidden = false;
-            hitResult = true;
+            hitResult = shipComponent != null;
+
+            // Is there a ship in component inside the cell which has never been hit?
+            if(shipComponent != null && !shipComponent.isHit())
+            {
+                // if was first it, then apply damage to the ship component
+                // and mark it as "hit".
+                shipComponent.setHit(true);
+            }
         }
         return hitResult;
     }
 
-    public void placeShipComponent(ShipComponent component)
+    public boolean placeShipComponent(ShipComponent component)
     {
-        if(component != null)
+        boolean result = component != null && shipComponent == null;
+        if(result)
         {
             component.coordinates = coordinates;
             this.shipComponent = component;
         }
+        return result;
     }
 
     /**
@@ -64,6 +70,10 @@ public class BoardCell
     public boolean isHidden()
     {
         return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     /**

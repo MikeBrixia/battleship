@@ -1,60 +1,51 @@
 package com.unicatt.battleship.core;
-
-import com.unicatt.battleship.beans.BoardCell;
+import com.unicatt.battleship.Main;
 import com.unicatt.battleship.beans.Coordinates;
-import com.unicatt.battleship.beans.Player;
+import com.unicatt.battleship.beans.IGame;
 import java.util.Scanner;
 
 public class GameSession
 {
-    private Player player;
-    private Board gameBoard;
-    private int currentAttempts;
-    private int maxAttempts;
+    /**
+     * The game that is being played by the
+     * game session.
+     */
+    private IGame game;
 
-    public GameSession(Player player, int maxAttempts, Board gameBoard)
+    /**
+     * The window used to display the game.
+     */
+    private GameWindow gameWindow;
+
+    public GameSession(IGame game)
     {
-        this.player = player;
-        this.currentAttempts = 0;
-        this.maxAttempts = maxAttempts;
-        this.gameBoard = gameBoard;
+        this.game = game;
+        this.gameWindow = new GameWindow(800, 800, "Battleship", true, this);
     }
 
     public void gameLoop()
     {
-        while(!isGameOver())
+        // Begin playing the game.
+        game.playGame();
+
+        // Render before starting the game loop.
+        gameWindow.render();
+
+        // Keep playing the game as long as it is not finished.
+        while(!game.hasFinished())
         {
-            Coordinates inputCoordinates = readPlayerInput();
-            update(inputCoordinates);
+            // First read inputs.
+            Main.userInput = readInput();
+
+            // After reading inputs, update the game.
+            game.onUpdate();
+
+            // Finally, after all game updates, render the game on the window.
+            gameWindow.render();
         }
     }
 
-    /**
-     * Update the game with the valid user input.
-     */
-    public void update(Coordinates coordinates)
-    {
-        BoardCell cell = gameBoard.getCell(coordinates.x, coordinates.y);
-        if(cell.isHidden())
-        {
-            currentAttempts++;
-            boolean hit = cell.hitCell();
-            if(hit)
-            {
-                player.incrementScore();
-            }
-            else
-            {
-                System.out.println("No hit, try again!");
-            }
-        }
-        else
-        {
-            System.out.println("You've already hit that cell!, try again");
-        }
-    }
-
-    private Coordinates readPlayerInput()
+    private Coordinates readInput()
     {
         boolean validInput = false;
         Coordinates inputCoordinates = null;
@@ -84,8 +75,14 @@ public class GameSession
         return inputCoordinates;
     }
 
-    public boolean isGameOver()
+    public GameWindow getGameWindow()
     {
-        return currentAttempts >= maxAttempts;
+        return gameWindow;
     }
+
+    public <T> T getGame()
+    {
+        return (T) game;
+    }
+
 }

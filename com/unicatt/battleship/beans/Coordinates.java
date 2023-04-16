@@ -11,10 +11,44 @@ public class Coordinates
     // The Y coordinate represented.
     public int y;
 
+    public Coordinates()
+    {
+        x = 0;
+        y = 0;
+    }
+
     public Coordinates(int horizontalCoordinate, int verticalCoordinate)
     {
        this.x = horizontalCoordinate;
        this.y = verticalCoordinate;
+    }
+
+    public void add(Coordinates other)
+    {
+        x += other.x;
+        y += other.y;
+    }
+
+    public static Coordinates add(Coordinates lv, Coordinates rv)
+    {
+        Coordinates result = new Coordinates();
+        result.x = lv.x + rv.x;
+        result.y = lv.y + rv.x;
+        return result;
+    }
+
+    public void subtract(Coordinates other)
+    {
+        x -= other.x;
+        y -= other.y;
+    }
+
+    public static Coordinates subtract(Coordinates lv, Coordinates rv)
+    {
+        Coordinates result = new Coordinates();
+        result.x = lv.x - rv.x;
+        result.y = lv.y - rv.y;
+        return result;
     }
 
     @Override

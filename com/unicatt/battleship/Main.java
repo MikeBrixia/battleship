@@ -1,43 +1,35 @@
 package com.unicatt.battleship;
+import com.unicatt.battleship.beans.Coordinates;
 import com.unicatt.battleship.beans.Player;
-import com.unicatt.battleship.core.BattleshipGrid;
-import com.unicatt.battleship.core.Board;
-import com.unicatt.battleship.core.GameSession;
+import com.unicatt.battleship.core.*;
 import com.unicatt.battleship.utils.CommonUtils;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
-
 
 public class Main
 {
+    public static GameSession currentSession;
+    public static Object userInput;
 
     public static void main(String[] args)
     {
-        Board gameBoard = new Board(10, 10);
+        Player[] players = new Player[1];
+        players[0] = new Player();
 
-        // Game window.
-        Frame window = new Frame();
-        window.setVisible(true);
-        window.setSize(800, 800);
-        window.setTitle("Battleship");
+        BattleshipGame game = new BattleshipGame(players, 5);
+        currentSession = new GameSession(game);
 
-        // Full screen.
+        // Create screen instance.
         Frame screen = new Frame();
         screen.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        CommonUtils.centerWindowOnScreen(window, screen);
 
-        // Create the grid and add it to the game window.
-        BattleshipGrid grid = new BattleshipGrid(gameBoard);
-        window.add(grid);
+        // Place game window at the center of the screen.
+        CommonUtils.centerWindowOnScreen(currentSession.getGameWindow().getWindow(), screen);
 
-        // Create a new game session with only one player.
-        Player player = new Player();
-        GameSession session = new GameSession(player, 7, gameBoard);
-
-        // Begin game loop.
-        session.gameLoop();
+        // Start game loop.
+        currentSession.gameLoop();
 
     }
-
 }
 

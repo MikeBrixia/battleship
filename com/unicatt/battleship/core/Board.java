@@ -1,11 +1,9 @@
 package com.unicatt.battleship.core;
-
+import com.unicatt.battleship.Main;
 import com.unicatt.battleship.beans.BoardCell;
 import com.unicatt.battleship.beans.Coordinates;
 import com.unicatt.battleship.beans.Ship;
 import com.unicatt.battleship.beans.ShipComponent;
-
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -23,13 +21,23 @@ public class Board
     // All the cells of this board
     private BoardCell[][] boardCells;
 
-    public Board(int columns, int rows)
+    /**
+     * The grid data of the board.
+     */
+    private BattleshipGrid grid;
+
+    public Board(int columns, int rows, Coordinates position)
     {
         this.columns = columns;
         this.rows = rows;
         this.boardCells = new BoardCell[columns][rows];
 
+        // Construct the board cells one by one.
         buildBoard();
+
+        // Create the board grid.
+        this.grid = new BattleshipGrid(this, position);
+        Main.currentSession.getGameWindow().getWindow().add(this.grid);
     }
 
     /**
@@ -51,10 +59,12 @@ public class Board
      * Place a ship on this board.
      * @param ship the ship to place on the board
      */
-    public void placeShip(Ship ship)
+    public boolean placeShip(Ship ship)
     {
         // Get all the components attached to the ship.
         List<ShipComponent> shipComponents = ship.getShipComponents();
+
+        boolean result = false;
 
         // Place the components of the ship one at a time.
         for(ShipComponent component : shipComponents)
@@ -65,8 +75,9 @@ public class Board
             BoardCell cell = boardCells[shipCoordinates.x][shipCoordinates.y];
 
             // Place the ship component inside the cell at X, Y coordinates.
-            cell.setShipComponent(component);
+            result = cell.placeShipComponent(component);
         }
+        return result;
     }
 
     /**
@@ -98,5 +109,7 @@ public class Board
     {
         return rows;
     }
+
+    public BattleshipGrid getGrid() { return grid; }
 
 }

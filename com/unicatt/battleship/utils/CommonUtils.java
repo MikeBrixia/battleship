@@ -113,10 +113,10 @@ public class CommonUtils {
         // Gets the size of the screen
 
         // Determines the new location of the window
-        int w = window.getSize().width; System.out.println(w);
-        int h = window.getSize().height; System.out.println(h);
-        int x = (parent.getSize().width-w)/2; System.out.println(parent.getSize().width);
-        int y = (parent.getSize().height-h)/2; System.out.println(parent.getSize().height);
+        int w = window.getSize().width;
+        int h = window.getSize().height;
+        int x = (parent.getSize().width-w)/2;
+        int y = (parent.getSize().height-h)/2;
 
 
 

@@ -3,6 +3,7 @@ package com.unicatt.battleship.beans;
 public class Player
 {
     private String name;
+
     private int score;
 
     public void incrementScore()
